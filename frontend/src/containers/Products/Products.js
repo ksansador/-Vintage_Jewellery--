@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ProductsLayout from "../../components/UI/Layout/ProductsLayout";
 import {Grid} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
+import {fetchProducts} from "../../store/actions/productsActions";
 
 const Products = () => {
     const dispatch = useDispatch();

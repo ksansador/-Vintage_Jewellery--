@@ -3,17 +3,17 @@ import {CssBaseline, Drawer, IconButton} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import DrawerContent from "./DrawerContent";
 import {useDispatch, useSelector} from "react-redux";
-// import {fetchCategories} from "../../../store/actions/categoriesAction";
+import {fetchCategories} from "../../../store/actions/categoriesActions";
 
 const drawerWidth = 240;
 
 const AppDrawer = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const dispatch = useDispatch();
-    // const categories = useSelector(state => state.categories.categories);
+    const categories = useSelector(state => state.category.categories);
 
     useEffect( () => {
-        // dispatch(fetchCategories());
+        dispatch(fetchCategories());
     }, [dispatch]);
 
     const handleDrawerToggle = () => {
@@ -44,7 +44,7 @@ const AppDrawer = () => {
                     '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth}
                 }}
             >
-                {/*<DrawerContent categories={categories}/>*/}
+                <DrawerContent categories={categories}/>
             </Drawer>
 
             <Drawer
@@ -55,7 +55,7 @@ const AppDrawer = () => {
                 }}
                 open
             >
-                {/*<DrawerContent  categories={categories}/>*/}
+                <DrawerContent  categories={categories}/>
             </Drawer>
         </>
     );

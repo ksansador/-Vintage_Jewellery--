@@ -1,37 +1,6 @@
 import axiosApi from "../../axiosApi";
 import {historyPush} from "./historyActions";
-
-
-//
-// export const fetchProducts = () => {
-//     return async (dispatch, getState) => {
-//         try {
-//             const headers = {
-//                 'Authorization': getState().users.user && getState().users.user.token,
-//             };
-//
-//             dispatch(fetchProductsRequest());
-//
-//             const response = await axiosApi('/products', {headers});
-//
-//             dispatch(fetchProductsSuccess(response.data));
-//         } catch (e) {
-//             if (e.response.status === 401) {
-//                 toast.warn('You need login!', {
-//                     position: "top-right",
-//                     autoClose: 3500,
-//                     hideProgressBar: false,
-//                     closeOnClick: true,
-//                     pauseOnHover: true,
-//                     draggable: true,
-//                     progress: undefined,
-//                 });
-//             }
-//
-//             dispatch(fetchProductsFailure(e.message));
-//         }
-//     }
-// };
+import {toast} from "react-toastify";
 
 export const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
@@ -62,7 +31,16 @@ export const registerUser = userData => {
 
            const response =  await axiosApi.post('/users', userData);
 
-            dispatch(registerUserSuccess(response.data));
+           await  dispatch(registerUserSuccess(response.data));
+            toast.success('Register success!', {
+                position: "top-right",
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             dispatch(historyPush('/'));
         } catch (e) {
             if (e.response && e.response.data) {
@@ -82,6 +60,15 @@ export const loginUser = userData => {
             const response = await axiosApi.post('/users/sessions', userData);
 
             dispatch(loginUserSuccess(response.data.user));
+            toast.success('You are login!', {
+                position: "top-right",
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             dispatch(historyPush('/'));
         } catch (e) {
             if (e.response && e.response.data) {

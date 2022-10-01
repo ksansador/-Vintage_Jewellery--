@@ -21,16 +21,16 @@ const DrawerContent = ({categories}) => {
          </DrawerHeader>
             <Divider/>
             <List>
-                {/*{categories.map(category => (*/}
-                {/*    <div key={category._id}>*/}
-                {/*        <ListItem >*/}
-                {/*            <ListItemButton component={Link} to={`/?category=${category._id}`}>*/}
-                {/*                <ListItemText primary={category.title}/>*/}
-                {/*            </ListItemButton>*/}
-                {/*        </ListItem>*/}
-                {/*        <Divider/>*/}
-                {/*    </div>*/}
-                {/*))}*/}
+                {categories.map(category => (
+                    <div key={category._id}>
+                        <ListItem >
+                            <ListItemButton component={Link} to={`/?category=${category._id}`}>
+                                <ListItemText primary={category.title}/>
+                            </ListItemButton>
+                        </ListItem>
+                        <Divider/>
+                    </div>
+                ))}
             </List>
         </>
     );
