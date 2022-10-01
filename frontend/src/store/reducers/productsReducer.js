@@ -2,6 +2,7 @@ import {FETCH_PRODUCTS_FAILURE, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS} 
 
 const initialState = {
     products: null,
+    product: null,
     fetchLoading: false,
     fetchError: null,
 };

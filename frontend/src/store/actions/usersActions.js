@@ -90,6 +90,15 @@ export const logoutUser = () => {
 
             dispatch({type: LOGOUT_USER});
             dispatch(historyPush('/'));
+            toast.warn('You are logout!', {
+                position: "top-right",
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         } catch (e) {
 
         }
