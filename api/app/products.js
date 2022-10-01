@@ -26,6 +26,9 @@ router.get('/', async (req, res) => {
     if(req.query.category) {
         query.category = req.query.category;
     }
+    if(req.query.user) {
+        query.user = req.query.user;
+    }
 
     try {
         const products = await Product
@@ -54,17 +57,10 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-
 router.post('/', [auth, upload.single('image')], async (req, res) => {
     try {
-
         const user = req.user;
-
-        const {title, price, category, description, image} = req.body;
-
-        if (!title || !category || !description || !image ) {
-            return res.status(400).send({error: 'Data not valid!'});
-        }
+        const {title, price, category, description} = req.body;
 
         const productData = {
             title,
@@ -72,7 +68,7 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
             category,
             user: user._id,
             description,
-            image,
+            image: null,
         };
 
         if (req.file) {
@@ -84,9 +80,8 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
 
         res.send(product);
     }catch (e) {
-        res.status(400).send({error: e.errors});
+        res.status(400).send(e);
     }
-
 });
 
 router.delete('/:id', auth, async (req, res) => {

@@ -1,5 +1,6 @@
 import axiosApi from "../../axiosApi";
 import {historyPush} from "./historyActions";
+import {toast} from "react-toastify";
 
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST';
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
@@ -8,6 +9,10 @@ export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
 export const FETCH_PRODUCT_REQUEST = 'FETCH_PRODUCT_REQUEST';
 export const FETCH_PRODUCT_SUCCESS = 'FETCH_PRODUCT_SUCCESS';
 export const FETCH_PRODUCT_FAILURE = 'FETCH_PRODUCT_FAILURE';
+
+export const CREATE_PRODUCT_REQUEST = 'CREATE_PRODUCT_REQUEST';
+export const CREATE_PRODUCT_SUCCESS = 'CREATE_PRODUCT_SUCCESS';
+export const CREATE_PRODUCT_FAILURE = 'CREATE_PRODUCT_FAILURE';
 
 export const DELETE_PRODUCT_REQUEST = 'DELETE_PRODUCT_REQUEST';
 export const DELETE_PRODUCT_SUCCESS = 'DELETE_PRODUCT_SUCCESS';
@@ -20,6 +25,10 @@ const fetchProductsFailure = error => ({type: FETCH_PRODUCTS_FAILURE, payload: e
 const fetchProductRequest = () => ({type: FETCH_PRODUCT_REQUEST});
 const fetchProductSuccess = product => ({type: FETCH_PRODUCT_SUCCESS, payload: product});
 const fetchProductFailure = error => ({type: FETCH_PRODUCT_FAILURE, payload: error});
+
+const createProductRequest = () => ({type: CREATE_PRODUCT_REQUEST});
+const createProductSuccess = () => ({type: CREATE_PRODUCT_SUCCESS});
+const createProductFailure = error => ({type: CREATE_PRODUCT_FAILURE, payload: error});
 
 const deleteProductRequest = () => ({type: DELETE_PRODUCT_REQUEST});
 const deleteProductSuccess = () => ({type: DELETE_PRODUCT_SUCCESS});
@@ -48,10 +57,39 @@ export const fetchProduct = id => {
             const response = await axiosApi('/products/' + id);
 
             dispatch(fetchProductSuccess(response.data));
+
         } catch (e) {
             dispatch(fetchProductFailure(e.message));
         }
     };
+};
+
+export const createProduct = (productData) => {
+    return async dispatch => {
+        try {
+            dispatch(createProductRequest());
+            await axiosApi.post('/products', productData);
+            dispatch(createProductSuccess());
+            toast.success('Create success!', {
+                position: "top-right",
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            dispatch(historyPush('/'));
+        } catch (e) {
+            if (e.response && e.response.data) {
+                dispatch(createProductFailure(e.response.data));
+            } else {
+                dispatch(createProductFailure({global: 'No internet'}));
+            }
+
+            throw e;
+        }
+    }
 };
 
 export const deleteProduct = id => {
@@ -61,6 +99,15 @@ export const deleteProduct = id => {
 
         await axiosApi.delete('/products/' + id);
          dispatch(deleteProductSuccess());
+        toast.success('Delete success!', {
+            position: "top-right",
+            autoClose: 3500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
          dispatch(historyPush('/'));
     } catch (e) {
         dispatch(deleteProductFailure(e));

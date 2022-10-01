@@ -1,5 +1,5 @@
+import * as React from "react";
 import {useState} from "react";
-import * as React from 'react';
 import {useDispatch} from "react-redux";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -49,6 +49,16 @@ const UserMenu = ({user}) => {
                       color: 'inherit'
                   }}}>
                   Add product
+              </Link>
+          </MenuItem>
+
+          <MenuItem onClick={handleClose}>
+              <Link to={`/?user=${user._id}`} style={{color: 'inherit',
+                  textDecoration: 'none',
+                  '&:hover': {
+                      color: 'inherit'
+                  }}}>
+                  My products
               </Link>
           </MenuItem>
           <MenuItem onClick={() => dispatch(logoutUser())}>Logout</MenuItem>

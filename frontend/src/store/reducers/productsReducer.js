@@ -1,4 +1,6 @@
 import {
+    CREATE_PRODUCT_FAILURE,
+    CREATE_PRODUCT_REQUEST, CREATE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAILURE,
     DELETE_PRODUCT_REQUEST, DELETE_PRODUCT_SUCCESS,
     FETCH_PRODUCT_FAILURE,
@@ -19,6 +21,9 @@ const initialState = {
 
     deleteLoading: false,
     deleteError: null,
+
+    createLoading: false,
+    createError: null,
 };
 
 const productsReducer = ( state = initialState, action) => {
@@ -36,6 +41,13 @@ const productsReducer = ( state = initialState, action) => {
             return { ...state, singleLoading: false, product: action.payload };
         case FETCH_PRODUCT_FAILURE:
             return { ...state, singleLoading: false, fetchError: action.payload };
+
+        case CREATE_PRODUCT_REQUEST:
+            return { ...state, createError: null, createLoading: true };
+        case CREATE_PRODUCT_SUCCESS:
+            return { ...state, createLoading: false };
+        case CREATE_PRODUCT_FAILURE:
+            return { ...state, createError: action.payload, createLoading: false };
 
         case DELETE_PRODUCT_REQUEST:
             return { ...state, deleteLoading: true, deleteError: null };

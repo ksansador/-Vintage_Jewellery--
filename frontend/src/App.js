@@ -11,10 +11,10 @@ function App() {
       <Layout>
         <Switch>
           <Route path="/" exact component={Products}/>
-          <Route path="/products/:id" exact component={Product}/>
+            <Route path={'/products/new'} exact component={NewProducts}/>
+            <Route path="/products/:id"  component={Product}/>
             <Route path={'/register'} component={Register}/>
             <Route path={'/login'} component={Login}/>
-            <Route path={'/products/new'} component={NewProducts}/>
         </Switch>
       </Layout>
   );
