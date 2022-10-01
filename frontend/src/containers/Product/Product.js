@@ -18,7 +18,12 @@ const Product = ({match}) => {
     if(product && user) {
         if(product.user._id === user._id) {
             button = <Button
-                sx={{ alignSelf: 'right', margin: '10px 0'}}
+                sx={{
+                    alignSelf: 'right',
+                    margin: '10px 0',
+                    color: '#98a66e',
+                    border: '1px solid #98a66e'
+            }}
 
                 onClick={() => dispatch(deleteProduct(product._id))}> delete product </Button>
         }
@@ -28,24 +33,25 @@ const Product = ({match}) => {
         <Grid item xs={12} >
             <Card sx={{height: '100%', padding: '0 15px'}}>
                 <CardHeader title={product.title} sx={{textTransform: "capitalize", color: '#34410e'}}>
-
                 </CardHeader>
-                <CardMedia
-                    title={product.title}
-                    image={`${apiUrl}/${product.image}`}
-                    sx={{paddingTop: '30%', maxWidth: '30%', height: 0, margin: '0 auto'}}
-                />
+
                 <CardContent>
+                    <CardMedia
+                        title={product.title}
+                        image={`${apiUrl}/${product.image}`}
+                        sx={{paddingTop: '30%', maxWidth: '30%', height: 0, margin: '0 auto'}}
+                    />
                     <Typography variant={"h5"} sx={{textAlign: 'center'}}>
-                        {product.title} >
-                        <Typography sx={{display: 'inline-block', margin: '0 10px'}}>
+                        {product.title}
+                        <Typography sx={{ margin: '0 10px'}}>
                             {product.description}
+                        </Typography>
+                        <Typography  style={{margin: '0' }}>
+                            <i>Price: {product.price}</i>
                         </Typography>
                     </Typography>
 
-                    <Typography  style={{margin: '10px 0' }}>
-                       <b>Price: {product.price}</b>
-                    </Typography>
+
                     <Typography component={'p'}>
                          {product.user.displayName}
                     </Typography>
