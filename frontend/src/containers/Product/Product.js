@@ -26,8 +26,8 @@ const Product = ({match}) => {
     return (
         product &&
         <Grid item xs={12} >
-            <Card sx={{height: '100%', padding: '0 15px', }}>
-                <CardHeader title={product.title} sx={{textTransform: "capitalize"}}>
+            <Card sx={{height: '100%', padding: '0 15px'}}>
+                <CardHeader title={product.title} sx={{textTransform: "capitalize", color: '#34410e'}}>
 
                 </CardHeader>
                 <CardMedia
@@ -36,7 +36,7 @@ const Product = ({match}) => {
                     sx={{paddingTop: '30%', maxWidth: '30%', height: 0, margin: '0 auto'}}
                 />
                 <CardContent>
-                    <Typography variant={"h5"}>
+                    <Typography variant={"h5"} sx={{textAlign: 'center'}}>
                         {product.title} >
                         <Typography sx={{display: 'inline-block', margin: '0 10px'}}>
                             {product.description}
@@ -44,7 +44,7 @@ const Product = ({match}) => {
                     </Typography>
 
                     <Typography  style={{margin: '10px 0' }}>
-                       Price: {product.price}
+                       <b>Price: {product.price}</b>
                     </Typography>
                     <Typography component={'p'}>
                          {product.user.displayName}

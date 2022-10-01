@@ -7,7 +7,7 @@ import {ToastContainer} from "react-toastify";
 import {AppBar, Grid, Toolbar, Typography} from "@mui/material";
 import Anonymous from "./Menu/Anonymous";
 import UserMenu from "./Menu/UserMenu";
-
+import DiamondSharpIcon from '@mui/icons-material/DiamondSharp';
 
 const useStyles = makeStyles()(theme => ({
   mainLink: {
@@ -33,10 +33,12 @@ const AppToolbar = () => {
        <Toolbar >
          <Grid container justifyContent="space-between" alignItems="center">
            <Grid item>
-             <Typography variant="h6" >
+             <Typography variant="h6" sx={{display: 'flex', alignItems: 'center'}} >
+
                <Link to="/" className={classes.mainLink}>
-                 Vintage Market
+               Vintage  Jewellery
                </Link>
+               <DiamondSharpIcon sx={{marginLeft: '10px'}}/>
              </Typography>
            </Grid>
 

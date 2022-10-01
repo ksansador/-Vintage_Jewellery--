@@ -19,30 +19,35 @@ const run = async () => {
         title: 'Rings',
         description: 'Vintage Rings',
     }, {
-        title: 'earrings',
+        title: 'Earrings',
         description: 'Vintage earrings',
     },{
         title: 'Pendants',
         description: 'Vintage pendants',
     });
 
-   const [adminUser, rootUser] = await User.create({
+   const [adminUser, rootUser, ksansaUser] = await User.create({
         username: 'admin',
         password: 'admin',
          displayName: 'Admin',
-       phone: '+996 555 555 777',
+       phone: '555-555-777',
         token: nanoid(),
     }, {
         username: 'root',
         password: 'root',
-       displayName: 'Root',
-
-       phone: '+996 555 555 444',
+        displayName: 'Root',
+        phone: '555-555-444',
+        token: nanoid(),
+    }, {
+        username: 'ksansa',
+        password: 'ksansa',
+        displayName: 'Ksansa',
+        phone: '555-555-444',
         token: nanoid(),
     });
 
     await Product.create({
-        title: "Amrita singh ring",
+        title: "Amrita ring",
         price: 300,
         description: 'rings for everyday',
         user: adminUser._id,
@@ -55,6 +60,27 @@ const run = async () => {
         description: 'Earring for everyday',
         category: earringsCategory._id,
         image: 'fixtures/b.jpg',
+    }, {
+        title: "NECKLACES",
+        price: 400,
+        user: ksansaUser._id,
+        description: 'pedants for everyday',
+        category: pendantCategory._id,
+        image: 'fixtures/c.jpg',
+    }, {
+        title: "Lavender",
+        price: 300,
+        user: ksansaUser._id,
+        description: 'Lavender Pendant — Claus Jewelry',
+        category: pendantCategory._id,
+        image: 'fixtures/d.jpg',
+    }, {
+        title: "Sun and Moon",
+        price: 300,
+        user: ksansaUser._id,
+        description: 'Pair of rings',
+        category: ringsCategory._id,
+        image: 'fixtures/i.jpg',
     });
 
 

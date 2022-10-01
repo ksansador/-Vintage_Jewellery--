@@ -29,8 +29,13 @@ const UserSchema = new Schema({
     },
     phone: {
         type: String,
+        validate: {
+            validator: function(v) {
+                return /\d{3}-\d{3}-\d{3}/.test(v);
+            },
+            message: props => `${props.value} is not a valid phone number! Try ( xxx-xxx-xxx )`
+        },
         required: true,
-        unique: true,
     },
     token: {
         type: String,
@@ -50,7 +55,7 @@ UserSchema.pre('save', async function(next) {
 });
 
 UserSchema.set('toJSON', {
-    transform: (doc, ret, options) => {
+    transform: (doc, ret) => {
         delete ret.password;
         return ret;
     }
