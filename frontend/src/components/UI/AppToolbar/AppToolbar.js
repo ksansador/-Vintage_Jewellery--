@@ -2,7 +2,8 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {makeStyles} from "tss-react/mui";
-// import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer} from "react-toastify";
 import {AppBar, Grid, Toolbar, Typography} from "@mui/material";
 import Anonymous from "./Menu/Anonymous";
 import UserMenu from "./Menu/UserMenu";
@@ -27,14 +28,14 @@ const AppToolbar = () => {
 
   return (
     <>
-     <AppBar position="fixed" sx={{bgcolor: '#012952'}} >
-
+     <AppBar position="fixed" sx={{bgcolor: '#576235'}} >
+       <ToastContainer />
        <Toolbar >
          <Grid container justifyContent="space-between" alignItems="center">
            <Grid item>
              <Typography variant="h6" >
                <Link to="/" className={classes.mainLink}>
-                 Forum
+                 Vintage Market
                </Link>
              </Typography>
            </Grid>

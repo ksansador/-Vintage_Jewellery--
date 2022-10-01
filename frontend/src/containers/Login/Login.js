@@ -108,6 +108,9 @@ const Login = () => {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            sx={{bgcolor: '#576235',
+                                '&:hover': {bgcolor: '#576235'}
+                            }}
                         >
                             Sign In
                         </ButtonWithProgress>
@@ -116,7 +119,7 @@ const Login = () => {
 
                 <Grid container justifyContent="flex-end">
                     <Grid item>
-                        <Link  component={RouterLink} to="/register">
+                        <Link  component={RouterLink} to="/register" color={'#576235'}>
                             Or sign up
                         </Link>
                     </Grid>

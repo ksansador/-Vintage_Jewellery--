@@ -1,6 +1,38 @@
 import axiosApi from "../../axiosApi";
 import {historyPush} from "./historyActions";
 
+
+//
+// export const fetchProducts = () => {
+//     return async (dispatch, getState) => {
+//         try {
+//             const headers = {
+//                 'Authorization': getState().users.user && getState().users.user.token,
+//             };
+//
+//             dispatch(fetchProductsRequest());
+//
+//             const response = await axiosApi('/products', {headers});
+//
+//             dispatch(fetchProductsSuccess(response.data));
+//         } catch (e) {
+//             if (e.response.status === 401) {
+//                 toast.warn('You need login!', {
+//                     position: "top-right",
+//                     autoClose: 3500,
+//                     hideProgressBar: false,
+//                     closeOnClick: true,
+//                     pauseOnHover: true,
+//                     draggable: true,
+//                     progress: undefined,
+//                 });
+//             }
+//
+//             dispatch(fetchProductsFailure(e.message));
+//         }
+//     }
+// };
+
 export const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
 export const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE';

@@ -38,7 +38,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     users: usersReducer,
-    // posts: postsReducer,
+    products: productsReducer,
 });
 
 const persistedState = loadFromLocalStorage();

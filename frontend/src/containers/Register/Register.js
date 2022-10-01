@@ -37,6 +37,8 @@ const Register = () => {
     const [user, setUser] = useState({
         username: '',
         password: '',
+        displayName: '',
+        phone: '',
     });
 
     useEffect(() => {
@@ -99,6 +101,22 @@ const Register = () => {
                         onChange={inputChangeHandler}
                         error={getFieldError('password')}
                     />
+                    <FormElement
+                        required={true}
+                        label="Display Name"
+                        name="displayName"
+                        value={user.displayName}
+                        onChange={inputChangeHandler}
+                        error={getFieldError('displayName')}
+                    />
+                    <FormElement
+                        required={true}
+                        label="Phone number"
+                        name="phone"
+                        value={user.phone}
+                        onChange={inputChangeHandler}
+                        error={getFieldError('phone')}
+                    />
 
                     <Grid item xs={12}>
                         <ButtonWithProgress
@@ -107,7 +125,9 @@ const Register = () => {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            color="primary"
+                            sx={{bgcolor: '#576235',
+                            '&:hover': {bgcolor: '#576235'}
+                            }}
                             className={classes.submit}
                         >
                             Sign Up
@@ -117,7 +137,7 @@ const Register = () => {
 
                 <Grid container justifyContent="flex-end">
                     <Grid item>
-                        <Link component={RouterLink} to="/login">
+                        <Link component={RouterLink} to="/login" color={'#576235'}>
                             Already have an account? Sign in
                         </Link>
                     </Grid>
